@@ -32,7 +32,6 @@ public class UserServiceImpl implements UserService {
 
     private final AuthenticationManager authenticationManager;
     private final UserRepository userRepository;
-    private final UserDetailServiceImpl userDetailService;
     private final Translator translator;
 
     @Override
