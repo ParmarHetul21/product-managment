@@ -5,51 +5,45 @@ import jakarta.persistence.*;
 import jakarta.persistence.ForeignKey;
 import jakarta.persistence.Table;
 import lombok.*;
-import lombok.experimental.FieldNameConstants;
 import org.hibernate.annotations.*;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 import static com.example.product.common.CommonConstant.DELETED_WHERE_CLAUSE;
 
-@Entity
-@Getter
-@Builder(toBuilder = true)
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "products")
+@Getter
+@Entity
+@Table(name = "users")
 @DynamicUpdate
 @SQLRestriction(value = DELETED_WHERE_CLAUSE)
-@SQLDelete(sql = "update products set status = 'DELETED' where product_id=?")
-@EntityListeners(AuditingEntityListener.class)
-@FieldNameConstants
-public class Product {
+@SQLDelete(sql = "update users set status = 'DELETED' where user_id=?")
+public class User {
 
     @Id
     @GeneratedValue
-    @Column(name = "product_id")
+    @Column(name = "user_id")
     private UUID id;
 
-    @Column(name = "name", unique = true)
-    private String name;
+    @Column(name = "username", length = 55)
+    private String username;
 
-    @Column(name = "description", length = 500, nullable = false)
-    private String description;
+    @Column(name = "email", length = 101, unique = true)
+    private String email;
 
-    @Column(name = "price")
-    private Double price;
-
-    @Column(name = "quantity")
-    private Long quantity;
+    @Column(name = "password")
+    private String password;
 
     @Enumerated(EnumType.STRING)
     @Builder.Default
+    @Column(name = "status")
     private Status status = Status.ACTIVE;
 
     @CreatedDate

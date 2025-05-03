@@ -1,12 +1,14 @@
 package com.example.product.controller;
 
 import com.example.product.common.EntityResponse;
+import com.example.product.config.SwaggerConfig;
 import com.example.product.model.request.AddOrEditProductRequest;
 import com.example.product.model.request.PageResponseModel;
 import com.example.product.model.request.ProductPageRequest;
 import com.example.product.model.response.ProductResponse;
 import com.example.product.service.ProductService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +21,7 @@ import java.util.UUID;
 @RequestMapping("/api/V1/products")
 @RequiredArgsConstructor
 @Tag(name = "Products")
+@SecurityRequirement(name = SwaggerConfig.SECURITY_SCHEME_BEARER_TOKEN_AUTH)
 public class ProductController {
 
     private final ProductService productService;

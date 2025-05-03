@@ -13,6 +13,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.lang.NonNull;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -93,5 +95,20 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
                 .map(errorDetail -> errorDetail.getField() + " : " + errorDetail.getMessage())
                 .collect(Collectors.joining(", "));
         return ApiErrorResponse.buildAPIErrorResponse(webRequest, HttpStatus.BAD_REQUEST, -1, errorMessage, errorDetails);
+    }
+
+    @ExceptionHandler(value = AuthenticationException.class)
+    protected ResponseEntity<Object> handleAuthenticationException(final AuthenticationException exception,
+                                                                   final WebRequest request) {
+
+        logger.error("AuthenticationException: ", exception);
+        final ApiErrorResponse errorResponse = ApiErrorResponse.setApiErrorResponse(
+                CommonErrorConstant.ACCESS_DENIED.getErrorCode(),
+                HttpStatus.UNAUTHORIZED,
+                translator.toLocal(CommonErrorConstant.ACCESS_DENIED.getErrorMessage()),
+                request
+        );
+
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorResponse);
     }
 }

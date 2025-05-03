@@ -12,4 +12,5 @@ public class CommonConstant {
     public static final String ASC = "asc";
     public static final int DEFAULT_PAGE_NUMBER = 0;
     public static final int DEFAULT_PAGE_SIZE = 1000;
+    public static final String USER_ID = "userId";
 }

@@ -33,6 +33,9 @@
 		<jakarta-servlet.version>6.0.0</jakarta-servlet.version>
 		<spring.boot.starter.validation.version>3.4.1</spring.boot.starter.validation.version>
 		<java.spring.doc.operapi.ui.version>2.8.6</java.spring.doc.operapi.ui.version>
+		<jjwt.api.version>0.12.5</jjwt.api.version>
+		<jjwt.impl.version>0.12.5</jjwt.impl.version>
+		<jjwt.jackson.version>0.12.5</jjwt.jackson.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -79,6 +82,38 @@
 			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
 			<version>${java.spring.doc.operapi.ui.version}</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-api -->
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-api</artifactId>
+			<version>${jjwt.api.version}</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-impl -->
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-impl</artifactId>
+			<version>${jjwt.impl.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-jackson -->
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-jackson</artifactId>
+			<version>${jjwt.jackson.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+
 	</dependencies>
 
 	<build>
