@@ -1,4 +1,4 @@
-# Project Name
+# Product Management RESTful API
 
 > A brief description of your Java Spring Boot project.
 
@@ -42,3 +42,7 @@ This is a Java Spring Boot application that provides the RESTful API for a Produ
 
 - mvn clean install -DskipTests
 - java -jar target/product-0.0.1-SNAPSHOT.jar --spring.profiles.active=local
+
+### Run the test cases
+
+- mvn clean test
