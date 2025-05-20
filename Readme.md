@@ -1,6 +1,6 @@
 # Product Management RESTful API
 
-> A brief description of your Java Spring Boot project.
+> A brief description of your Product Managment Rest API's
 
 ## About
 
